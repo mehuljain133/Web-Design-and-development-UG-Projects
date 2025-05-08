@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhD-Level Web Demo: Data Visualization & Dynamic Content</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js Library -->
+    <style>
+        /* ========== Basic Styling ========== */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        section {
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 12px 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #chartContainer {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        footer {
+            font-size: 14px;
+        }
+
+        /* ========== Dynamic Content Area ========== */
+        .dynamic-content {
+            padding: 15px;
+            background-color: #e2e2e2;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>PhD-Level Web Demo: Data Visualization & Dynamic Content</h1>
+        <p>Explore interactive data visualizations and dynamic web features.</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Static Content Section -->
+        <section>
+            <h2>Interactive Data Visualization</h2>
+            <p>This chart dynamically updates based on user input below.</p>
+            <div id="chartContainer">
+                <canvas id="myChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Dynamic Content Section -->
+        <section>
+            <div class="dynamic-content">
+                <h3>Interactive Data Input</h3>
+                <p>Enter data to update the chart:</p>
+                <input type="number" id="dataInput" placeholder="Enter a value (0-100)" min="0" max="100">
+                <button onclick="updateChart()">Update Chart</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 PhD Web Development | All Rights Reserved</p>
+    </footer>
+
+    <!-- JavaScript for Dynamic Content -->
+    <script>
+        // Chart.js Configuration
+        const ctx = document.getElementById('myChart').getContext('2d');
+        let chartData = [10, 20, 30, 40, 50];
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                datasets: [{
+                    label: 'Data over Time',
+                    data: chartData,
+                    borderColor: '#4CAF50',
+                    backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Function to update chart based on user input
+        function updateChart() {
+            const newValue = parseInt(document.getElementById('dataInput').value);
+            if (!isNaN(newValue) && newValue >= 0 && newValue <= 100) {
+                // Add the new value to the data array
+                chartData.push(newValue);
+                chartData.shift(); // Remove the first element to keep data size consistent
+
+                // Update the chart with new data
+                myChart.update();
+            } else {
+                alert('Please enter a valid number between 0 and 100.');
+            }
+        }
+    </script>
+</body>
+</html>
