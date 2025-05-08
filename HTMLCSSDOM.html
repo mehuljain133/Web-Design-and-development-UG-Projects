@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhD Web Development Demo: HTML, CSS, and DOM</title>
+    <style>
+        /* ========== Basic CSS ========== */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        section {
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        button {
+            padding: 12px 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Image Styling */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Form Styling */
+        input, select, textarea {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 5px;
+        }
+
+        iframe {
+            border: none;
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>PhD-Level Web Development Demo: HTML, CSS, and DOM</h1>
+        <p>This page demonstrates various HTML and CSS features and introduces DOM manipulation.</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#basic-tags">Basic Tags</a>
+        <a href="#lists">Lists</a>
+        <a href="#graphics">Graphics</a>
+        <a href="#tables">Tables</a>
+        <a href="#forms">Forms</a>
+        <a href="#dom">DOM Manipulation</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Section: Basic HTML Tags -->
+        <section id="basic-tags">
+            <h2>1. Basic HTML Tags</h2>
+            <p>This is an example of a paragraph tag. HTML allows you to structure content with various tags like <code>&lt;h1&gt;</code> for headings, <code>&lt;p&gt;</code> for paragraphs, and more.</p>
+            <h3>This is a Level 3 Heading</h3>
+            <p>Here's another paragraph.</p>
+        </section>
+
+        <!-- Section: Lists -->
+        <section id="lists">
+            <h2>2. Lists</h2>
+            <h3>Ordered List:</h3>
+            <ol>
+                <li>First item</li>
+                <li>Second item</li>
+                <li>Third item</li>
+            </ol>
+            <h3>Unordered List:</h3>
+            <ul>
+                <li>Item A</li>
+                <li>Item B</li>
+                <li>Item C</li>
+            </ul>
+        </section>
+
+        <!-- Section: Graphics -->
+        <section id="graphics">
+            <h2>3. Handling Graphics</h2>
+            <p>Here is an example image:</p>
+            <img src="https://via.placeholder.com/800x400" alt="Placeholder Image">
+        </section>
+
+        <!-- Section: Tables -->
+        <section id="tables">
+            <h2>4. Tables</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>28</td>
+                    <td>New York</td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>34</td>
+                    <td>London</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section: Forms -->
+        <section id="forms">
+            <h2>5. Forms</h2>
+            <p>Forms allow users to submit information to the server. Here is an example form:</p>
+            <form id="myForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message"></textarea><br>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <!-- Section: DOM Manipulation -->
+        <section id="dom">
+            <h2>6. Introduction to DOM</h2>
+            <p>DOM (Document Object Model) allows you to manipulate HTML elements using JavaScript. Below is an interactive button that changes the content when clicked:</p>
+            <button id="changeContentBtn">Change Content</button>
+            <p id="dynamicContent">This is static content that will change when you click the button.</p>
+            <h3>Embedding External Content (iFrame):</h3>
+            <iframe src="https://www.example.com"></iframe>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 PhD Web Development | All Rights Reserved</p>
+    </footer>
+
+    <!-- JavaScript for DOM Manipulation -->
+    <script>
+        // DOM manipulation: Change content when button is clicked
+        document.getElementById("changeContentBtn").addEventListener("click", function() {
+            document.getElementById("dynamicContent").innerHTML = "The content has been changed! This is dynamic content via JavaScript.";
+        });
+    </script>
+</body>
+</html>
