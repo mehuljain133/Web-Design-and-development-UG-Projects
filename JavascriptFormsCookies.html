@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhD Web Demo: JavaScript, Forms, and Cookies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .container {
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 12px 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input, select, textarea {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>PhD-Level JavaScript Demo</h1>
+        <p>This page demonstrates JavaScript features like forms, validation, cookies, and DOM event handling.</p>
+    </header>
+
+    <main>
+        <!-- Basic JavaScript Functionality -->
+        <section class="container">
+            <h2>1. Basic Programming Techniques</h2>
+            <button onclick="showGreeting()">Click to Greet</button>
+            <p id="greetingMessage"></p>
+        </section>
+
+        <!-- GET/POST Methods (Simulated) -->
+        <section class="container">
+            <h2>2. Simulated GET/POST Methods</h2>
+            <button onclick="simulateGetMethod()">Simulate GET Method</button>
+            <button onclick="simulatePostMethod()">Simulate POST Method</button>
+            <p id="getPostMessage"></p>
+        </section>
+
+        <!-- Operators Demo -->
+        <section class="container">
+            <h2>3. Operators</h2>
+            <button onclick="demoOperators()">Demo Operators</button>
+            <p id="operatorsMessage"></p>
+        </section>
+
+        <!-- Form Validation -->
+        <section class="container">
+            <h2>4. Form Validation</h2>
+            <form id="contactForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+
+                <button type="submit">Submit</button>
+            </form>
+            <p id="formMessage"></p>
+        </section>
+
+        <!-- Cookies -->
+        <section class="container">
+            <h2>5. Cookies</h2>
+            <button onclick="setCookie()">Set a Cookie</button>
+            <button onclick="getCookie()">Get Cookie</button>
+            <p id="cookieMessage"></p>
+        </section>
+
+        <!-- Inter-Page Communication -->
+        <section class="container">
+            <h2>6. Inter-Page Communication (localStorage)</h2>
+            <button onclick="storeData()">Store Data in localStorage</button>
+            <button onclick="retrieveData()">Retrieve Stored Data</button>
+            <p id="localStorageMessage"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PhD Web Development | All Rights Reserved</p>
+    </footer>
+
+    <!-- JavaScript for Interaction and Logic -->
+    <script>
+        // Basic Programming Techniques
+        function showGreeting() {
+            let name = "PhD Student";
+            let message = "Hello, " + name + "! Welcome to the JavaScript demo!";
+            document.getElementById("greetingMessage").textContent = message;
+        }
+
+        // Simulating GET and POST methods
+        function simulateGetMethod() {
+            let data = "GET Method: Data retrieved successfully!";
+            document.getElementById("getPostMessage").textContent = data;
+        }
+
+        function simulatePostMethod() {
+            let data = "POST Method: Data sent successfully!";
+            document.getElementById("getPostMessage").textContent = data;
+        }
+
+        // Operators Demo
+        function demoOperators() {
+            let num1 = 5;
+            let num2 = 10;
+            let result = num1 + num2;
+            let message = "Result of 5 + 10 = " + result;
+            document.getElementById("operatorsMessage").textContent = message;
+        }
+
+        // Form Validation
+        document.getElementById("contactForm").onsubmit = function(event) {
+            event.preventDefault(); // Prevent form submission for demo
+
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+
+            if (username && email) {
+                document.getElementById("formMessage").textContent = "Form submitted successfully!";
+            } else {
+                document.getElementById("formMessage").textContent = "Please fill out all fields.";
+            }
+        }
+
+        // Cookies
+        function setCookie() {
+            let date = new Date();
+            date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000)); // Set cookie for 30 days
+            let expires = "expires=" + date.toUTCString();
+            document.cookie = "username=PhDStudent; " + expires + "; path=/";
+            document.getElementById("cookieMessage").textContent = "Cookie has been set!";
+        }
+
+        function getCookie() {
+            let name = "username=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    let username = c.substring(name.length, c.length);
+                    document.getElementById("cookieMessage").textContent = "Cookie retrieved: " + username;
+                    return;
+                }
+            }
+            document.getElementById("cookieMessage").textContent = "Cookie not found.";
+        }
+
+        // Inter-Page Communication (localStorage)
+        function storeData() {
+            localStorage.setItem("userData", "This is stored data in localStorage.");
+            document.getElementById("localStorageMessage").textContent = "Data has been stored in localStorage!";
+        }
+
+        function retrieveData() {
+            let storedData = localStorage.getItem("userData");
+            if (storedData) {
+                document.getElementById("localStorageMessage").textContent = "Retrieved data: " + storedData;
+            } else {
+                document.getElementById("localStorageMessage").textContent = "No data found in localStorage.";
+            }
+        }
+    </script>
+</body>
+</html>
